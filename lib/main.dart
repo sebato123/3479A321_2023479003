@@ -60,8 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Color _currentColor = Colors.red;  
 
 
-  void _incrementCounter() {
-    setState(() {
+  void _incrementCounter() => setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -69,10 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
-  }
 
-  void _decrementCounter() {
-    setState(() {
+  void _decrementCounter() => setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -81,10 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter--;
     });
 
-  }
-
-  void _resetCounter() {
-    setState(() {
+  void _resetCounter() => setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -93,8 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter = 0;
     });
 
-  }
-
   Color _randomColor(){
     
     final random = Random();
@@ -102,8 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  void _changeColor() {
-    setState(() {
+  void _changeColor() => setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -112,8 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
       
        _currentColor=_randomColor();
     });
-
-  }
   
 
   @override
@@ -182,6 +171,12 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
+        ),
+        const SizedBox(width: 5), // espacio entre botones
+        FloatingActionButton(
+        onPressed: _changeColor,
+        tooltip: 'Change Color',
+        child: const Icon(Icons.format_color_fill),
         )
     ],
   ),
