@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -55,6 +57,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  Color _currentColor = Colors.red;  
+
 
   void _incrementCounter() {
     setState(() {
@@ -66,6 +70,51 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+
+  void _decrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter--;
+    });
+
+  }
+
+  void _resetCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter = 0;
+    });
+
+  }
+
+  Color _randomColor(){
+    
+    final random = Random();
+      return Color.fromARGB(255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
+
+  }
+
+  void _changeColor() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      
+       _currentColor=_randomColor();
+    });
+
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: _currentColor,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
@@ -112,11 +161,64 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+
+      persistentFooterButtons: [
+      Row(
+      mainAxisAlignment: MainAxisAlignment.end, 
+      children: [
+        FloatingActionButton(
+        onPressed: _decrementCounter,
+        tooltip: 'Decrement',
+        child: const Icon(Icons.remove),
+        ),
+      const SizedBox(width: 5), // espacio entre botones
+        FloatingActionButton(
+        onPressed: _resetCounter,
+        tooltip: 'Reset',
+        child: const Icon(Icons.refresh),
+        ),
+        const SizedBox(width: 5), // espacio entre botones
+        FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(Icons.palette),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        child: const Icon(Icons.add),
+        )
+    ],
+  ),
+],
+
+      floatingActionButton: Row(
+  mainAxisAlignment: MainAxisAlignment.end, // los pega al lado derecho
+  children: [
+    FloatingActionButton(
+      onPressed: _decrementCounter,
+      tooltip: 'Decrement',
+      child: const Icon(Icons.minimize),
+    ),
+    const SizedBox(width: 10), // espacio entre botones
+    FloatingActionButton(
+      onPressed: () {
+        setState(() {
+          _counter = 0;
+        });
+      },
+      tooltip: 'Reset',
+      child: const Icon(Icons.refresh),
+    ),
+    const SizedBox(width: 10), // espacio entre botones
+    FloatingActionButton(
+      onPressed: _incrementCounter,
+      tooltip: 'Increment',
+      child: const Icon(Icons.add),
+    ),
+    const SizedBox(width: 10), // espacio entre botones
+    FloatingActionButton(
+      onPressed: _changeColor,
+      tooltip: 'Change color',
+      child: const Icon(Icons.format_color_fill),
+    ),
+  ],
+),
     );
   }
 }
