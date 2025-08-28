@@ -60,32 +60,32 @@ class _MyHomePageState extends State<MyHomePage> {
   Color _currentColor = Colors.red;  
 
 
-  void _incrementCounter() => setState(() {
+  void _incrementCounter() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
-    });
+    }
 
-  void _decrementCounter() => setState(() {
+  void _decrementCounter() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter--;
-    });
+    }
 
-  void _resetCounter() => setState(() {
+  void _resetCounter() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter = 0;
-    });
+    }
 
   Color _randomColor(){
     
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  void _changeColor() => setState(() {
+  void _changeColor(){
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       
        _currentColor=_randomColor();
-    });
+    }
   
 
   @override
@@ -185,35 +185,51 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Row(
   mainAxisAlignment: MainAxisAlignment.end, // los pega al lado derecho
   children: [
-    FloatingActionButton(
-      onPressed: _decrementCounter,
-      tooltip: 'Decrement',
-      child: const Icon(Icons.minimize),
-    ),
+    Decrement(),
     const SizedBox(width: 10), // espacio entre botones
-    FloatingActionButton(
-      onPressed: () {
-        setState(() {
-          _counter = 0;
-        });
-      },
-      tooltip: 'Reset',
-      child: const Icon(Icons.refresh),
-    ),
+    Reset(),
     const SizedBox(width: 10), // espacio entre botones
-    FloatingActionButton(
-      onPressed: _incrementCounter,
-      tooltip: 'Increment',
-      child: const Icon(Icons.add),
-    ),
+    Increment(),
     const SizedBox(width: 10), // espacio entre botones
-    FloatingActionButton(
-      onPressed: _changeColor,
-      tooltip: 'Change color',
-      child: const Icon(Icons.format_color_fill),
-    ),
+    ChangeColor(),
   ],
 ),
     );
+  }
+
+  FloatingActionButton ChangeColor() {
+    return FloatingActionButton(
+    onPressed: _changeColor,
+    tooltip: 'Change color',
+    child: const Icon(Icons.format_color_fill),
+  );
+  }
+
+  FloatingActionButton Increment() {
+    return FloatingActionButton(
+    onPressed: _incrementCounter,
+    tooltip: 'Increment',
+    child: const Icon(Icons.add),
+  );
+  }
+
+  FloatingActionButton Reset() {
+    return FloatingActionButton(
+    onPressed: () {
+      setState(() {
+        _counter = 0;
+      });
+    },
+    tooltip: 'Reset',
+    child: const Icon(Icons.refresh),
+  );
+  }
+
+  FloatingActionButton Decrement() {
+    return FloatingActionButton(
+    onPressed: _decrementCounter,
+    tooltip: 'Decrement',
+    child: const Icon(Icons.minimize),
+  );
   }
 }
