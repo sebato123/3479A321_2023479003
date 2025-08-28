@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       title: 'Flutter Demo',
+      
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -61,31 +64,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   void _incrementCounter() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    }
+  setState(() {
+    _counter++;
+  });
+}
 
-  void _decrementCounter() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter--;
-    }
+void _decrementCounter() {
+  setState(() {
+    _counter--;
+  });
+}
 
-  void _resetCounter() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter = 0;
-    }
+void _resetCounter() {
+  setState(() {
+    _counter = 0;
+  });
+}
+
+void _changeColor() {
+  setState(() {
+    _currentColor = _randomColor();
+  });
+}
 
   Color _randomColor(){
     
@@ -94,19 +94,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  void _changeColor(){
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      
-       _currentColor=_randomColor();
-    }
-  
+
 
   @override
   Widget build(BuildContext context) {
+    var logger = Logger();
+
+    logger.d("Logger is working!");
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -141,11 +135,24 @@ class _MyHomePageState extends State<MyHomePage> {
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             const Text('Pixel Art sobre una grilla personalizable'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Row(
+              children: <Widget>[
+                
+                SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Row(
+                    children: [
+                    //Imagenes  
+                    Image.asset("Assets/Pixel-Art-Hot-Pepper-2-1.webp", width: 400, fit: BoxFit.cover),
+                    Image.asset("Assets/Pixel-Art-Pizza-2.webp", width: 400, fit: BoxFit.cover),
+                    Image.asset("Assets/Pixel-Art-Watermelon-3.webp", width: 400, fit: BoxFit.cover),
+                    ],),
+                ),
+                
+              ],
+              
             ),
           ],
         ),
@@ -181,19 +188,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ],
   ),
 ],
-
-      floatingActionButton: Row(
-  mainAxisAlignment: MainAxisAlignment.end, // los pega al lado derecho
-  children: [
-    Decrement(),
-    const SizedBox(width: 10), // espacio entre botones
-    Reset(),
-    const SizedBox(width: 10), // espacio entre botones
-    Increment(),
-    const SizedBox(width: 10), // espacio entre botones
-    ChangeColor(),
-  ],
-),
     );
   }
 
