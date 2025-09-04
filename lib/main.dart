@@ -1,10 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lab2/pages/home_pages.dart';
-import 'package:logger/logger.dart';
-import 'pages/home_pages.dart';
+import 'pages/list_art.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +35,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: '2023479003'),
+      home: CardExampleApp(),
     );
   }
 }
