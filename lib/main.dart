@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: CardExampleApp(),
+      home: const MyHomePage(title: "Pixeles"),
     );
   }
 }

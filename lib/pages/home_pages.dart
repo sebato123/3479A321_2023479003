@@ -82,7 +82,10 @@ void _changeColor() {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        child:  Card (
+        margin: const EdgeInsets.all(16),
+        
+          child: Column(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -97,13 +100,13 @@ void _changeColor() {
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
-            const Text('Pixel Art sobre una grilla personalizable'),
             Row(
               children: <Widget>[
                 
                 SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
+                  scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
                     //Imagenes  
@@ -112,12 +115,26 @@ void _changeColor() {
                     Image.asset("Assets/Pixel-Art-Watermelon-3.webp", width: 400, fit: BoxFit.cover),
                     ],),
                 ),
+
+                
+              ],
+              
+            ),
+             Row(
+              children: <Widget>[
+                
+               FloatingActionButton(
+                 onPressed: _changeColor,
+                tooltip: 'Change Color',
+                child: const Icon(Icons.format_color_fill),
+               )
                 
               ],
               
             ),
           ],
         ),
+      ),
       ),
 
       persistentFooterButtons: [
