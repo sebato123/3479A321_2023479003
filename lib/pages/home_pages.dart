@@ -48,65 +48,42 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: _currentColor,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child:  Card (
-        margin: const EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                    height: 400, // altura del carrusel
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children:[
+                      Image.asset("Assets/Pixel-Art-Hot-Pepper-2-1.webp", width: 600, fit: BoxFit.cover),
+                      Image.asset("Assets/Pixel-Art-Pizza-2.webp",        width: 600, fit: BoxFit.cover),
+                      Image.asset("Assets/Pixel-Art-Watermelon-3.webp",   width: 600, fit: BoxFit.cover),
+                      ],
+                    ),
+                  ),
         
-          child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-
-          children: [
-            Row(
-              children: <Widget>[
-                
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                    //Imagenes  
-                    Image.asset("Assets/Pixel-Art-Hot-Pepper-2-1.webp", width: 400, fit: BoxFit.cover),
-                    Image.asset("Assets/Pixel-Art-Pizza-2.webp", width: 400, fit: BoxFit.cover),
-                    Image.asset("Assets/Pixel-Art-Watermelon-3.webp", width: 400, fit: BoxFit.cover),
-                    ],),
-                ),
-
-                
-              ],
-              
-            ),
+        
+        const SizedBox(height: 12),
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton.icon(
-                      onPressed: () => _logger.i("Crear pulsado"),
+                      onPressed: () {},
                       icon: const Icon(Icons.create),
                       label: const Text("Crear"),
                     ),
                     ElevatedButton.icon(
-                      onPressed: () => _logger.i("Compartir pulsado"), 
+                      onPressed: () {},
                       icon: const Icon(Icons.share),
                       label: const Text("Compartir"),
                     ),
@@ -116,6 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       ),
+    ),
+      
     );
 }
 }

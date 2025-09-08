@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: "Card con imagenes"),
+      home: const MyHomePage(title: "Display de imagenes"),
     );
   }
 }
