@@ -22,7 +22,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  Color _currentColor = Colors.red;  
+  Color _currentColor = Colors.red;
+  
+  get _logger => null;  
 
 
   void _incrementCounter() {
@@ -30,31 +32,6 @@ class _MyHomePageState extends State<MyHomePage> {
     _counter++;
   });
 }
-
-void _decrementCounter() {
-  setState(() {
-    _counter--;
-  });
-}
-
-void _resetCounter() {
-  setState(() {
-    _counter = 0;
-  });
-}
-
-void _changeColor() {
-  setState(() {
-    _currentColor = _randomColor();
-  });
-}
-
-  Color _randomColor(){
-    
-    final random = Random();
-      return Color.fromARGB(255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
-
-  }
 
 
 
@@ -120,89 +97,25 @@ void _changeColor() {
               ],
               
             ),
-             Row(
-              children: <Widget>[
-                
-               FloatingActionButton(
-                 onPressed: _changeColor,
-                tooltip: 'Change Color',
-                child: const Icon(Icons.format_color_fill),
-               )
-                
-              ],
-              
-            ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () => _logger.i("Crear pulsado"),
+                      icon: const Icon(Icons.create),
+                      label: const Text("Crear"),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () => _logger.i("Compartir pulsado"), 
+                      icon: const Icon(Icons.share),
+                      label: const Text("Compartir"),
+                    ),
+                  ],
+                ),
           ],
         ),
       ),
       ),
-
-      persistentFooterButtons: [
-      Row(
-      mainAxisAlignment: MainAxisAlignment.end, 
-      children: [
-        FloatingActionButton(
-        onPressed: _decrementCounter,
-        tooltip: 'Decrement',
-        child: const Icon(Icons.remove),
-        ),
-      const SizedBox(width: 5), // espacio entre botones
-        FloatingActionButton(
-        onPressed: _resetCounter,
-        tooltip: 'Reset',
-        child: const Icon(Icons.refresh),
-        ),
-        const SizedBox(width: 5), // espacio entre botones
-        FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-        ),
-        const SizedBox(width: 5), // espacio entre botones
-        FloatingActionButton(
-        onPressed: _changeColor,
-        tooltip: 'Change Color',
-        child: const Icon(Icons.format_color_fill),
-        )
-    ],
-  ),
-],
     );
-  }
-
-  FloatingActionButton ChangeColor() {
-    return FloatingActionButton(
-    onPressed: _changeColor,
-    tooltip: 'Change color',
-    child: const Icon(Icons.format_color_fill),
-  );
-  }
-
-  FloatingActionButton Increment() {
-    return FloatingActionButton(
-    onPressed: _incrementCounter,
-    tooltip: 'Increment',
-    child: const Icon(Icons.add),
-  );
-  }
-
-  FloatingActionButton Reset() {
-    return FloatingActionButton(
-    onPressed: () {
-      setState(() {
-        _counter = 0;
-      });
-    },
-    tooltip: 'Reset',
-    child: const Icon(Icons.refresh),
-  );
-  }
-
-  FloatingActionButton Decrement() {
-    return FloatingActionButton(
-    onPressed: _decrementCounter,
-    tooltip: 'Decrement',
-    child: const Icon(Icons.minimize),
-  );
-  }
+}
 }
