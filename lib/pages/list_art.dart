@@ -1,61 +1,40 @@
 
 import 'package:flutter/material.dart';
 
-/// Flutter code sample for [Card].
 
-void main() => runApp(const CardExampleApp());
+final List<String> elementos = [
+  'Elemento 1',
+  'Elemento 2',
+  'Elemento 3',
+  'Elemento 4',
+  'Elemento 5',
+];
 
-class CardExampleApp extends StatelessWidget {
-  const CardExampleApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Card Sample')),
-        body: const CardExample(),
-      ),
-    );
-  }
-}
-
-class CardExample extends StatelessWidget {
-  const CardExample({super.key});
+class ListArt extends StatelessWidget {
+  const ListArt({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const ListTile(
-              leading: Icon(Icons.album),
-              title: Text('The Enchanted Nightingale'),
-              subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                TextButton(
-                  child: const Text('BUY TICKETS'),
-                  onPressed: () {
-                    /* ... */
-                  },
-                ),
-                const SizedBox(width: 8),
-                TextButton(
-                  child: const Text('LISTEN'),
-                  onPressed: () {
-                    /* ... */
-                  },
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ],
+    return Scaffold(
+      
+      body: 
+         ListView.builder(
+            itemCount: elementos.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(elementos[index]),
+              );
+            },
+
+          ),
+        bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Volver'),
         ),
-      ),
+    ),
     );
+
   }
 }

@@ -1,6 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'list_art.dart';
+import 'about.dart';
+import 'list_creation.dart';
+
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -16,13 +21,15 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+  
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  Color _currentColor = Colors.red;
+  Color _currentColor = const Color.fromARGB(255, 49, 28, 25);
   
   get _logger => null;  
 
@@ -31,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   setState(() {
     _counter++;
   });
+  
 }
 
 
@@ -47,10 +55,33 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: _currentColor,
-        title: Text(widget.title),
+      appBar: AppBar(backgroundColor: const Color.fromARGB(120, 216, 18, 18), title: Text(widget.title),
+      actions: [
+        TextButton(
+          style: TextButton.styleFrom(
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),     // fondo del botón
+        foregroundColor: Colors.white,    // color del texto/icono
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8), // bordes redondeados
+        ),
       ),
+          onPressed: () {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const About()),
+        );
+      },
+      child: const Text(
+        "About",
+        style: TextStyle(
+          color: Colors.white, // texto blanco para que se vea sobre el AppBar
+          fontSize: 16,
+        ),
+      ),
+    ),
+  ],
+),
 
       body: Center(
         child:  Card (
@@ -78,23 +109,32 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => ListArt()),
+                          );
+                        },
                       icon: const Icon(Icons.create),
                       label: const Text("Crear"),
                     ),
                     ElevatedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(Icons.share),
-                      label: const Text("Compartir"),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => ListCreation()), 
+                          );
+                          },
+                          icon: const Icon(Icons.share),
+                          label: const Text("Creaciones"),
                     ),
                   ],
                 ),
-          ],
-        ),
-      ),
-      ),
-    ),
-      
-    );
-}
-}
+                  ],
+                ),  
+            ),
+            ),
+          ),
+        );
+    }
+  }
