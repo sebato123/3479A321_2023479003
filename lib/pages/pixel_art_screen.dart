@@ -1,16 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:lab2/pages/pixel_art_screen.dart';
 import 'package:logger/logger.dart';
 import 'list_art.dart';
 import 'about.dart';
 import 'list_creation.dart';
-import 'home_pages.dart';
 
-
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class PixelArtScreen extends StatefulWidget {
+  const PixelArtScreen({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -25,15 +21,55 @@ class MyHomePage extends StatefulWidget {
 
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PixelArtScreen> createState() => __PixelArtScreenState();
   
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class __PixelArtScreenState extends State<PixelArtScreen> {
   int _counter = 0;
   Color _currentColor = const Color.fromARGB(255, 49, 28, 25);
   
-  get _logger => null;  
+  Logger logger = Logger();
+  int _sizeGrid = 12;
+
+  @override
+  void initState(){
+    super.initState();
+    logger.d("PixelArtScreen initialized. Mounted $mounted");
+    //_sizeGrid = context.read<ConfigurationData>().size;
+    logger.d("Grid size set to: $_sizeGrid");
+  }
+
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    logger.d("Dependencies changed. Mounted: $mounted");
+  }
+
+  @override
+  void didUpdateWidget(covariant PixelArtScreen oldWidget){
+    super.didUpdateWidget(oldWidget);
+    logger.d("PixelArtScreen widget updated. Mounted: $mounted");
+  }
+
+  @override
+  void deactivate(){
+    super.deactivate();
+    logger.d("Deactivate activado. Mounted: $mounted");
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+    logger.d("Dispose activado. Mounted: $mounted");
+  }
+
+  @override
+  void reassemble(){
+    super.reassemble();
+    logger.d("Reassamble activado. Mounted: $mounted");
+  }
+
 
 
   void _incrementCounter() {
@@ -93,19 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(
-                    height: 400, // altura del carrusel
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children:[
-                      Image.asset("Assets/Pixel-Art-Hot-Pepper-2-1.webp", width: 600, fit: BoxFit.cover),
-                      Image.asset("Assets/Pixel-Art-Pizza-2.webp",        width: 600, fit: BoxFit.cover),
-                      Image.asset("Assets/Pixel-Art-Watermelon-3.webp",   width: 600, fit: BoxFit.cover),
-                      ],
-                    ),
-                  ),
-        
-        
+                    
         const SizedBox(height: 12),
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -124,11 +148,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => PixelArtScreen(title: "Pixel Art",)), 
+                          MaterialPageRoute(builder: (_) => ListCreation()), 
                           );
                           },
                           icon: const Icon(Icons.share),
-                          label: const Text("Pantalla PixelArt"),
+                          label: const Text("Creaciones"),
                     ),
                   ],
                 ),
