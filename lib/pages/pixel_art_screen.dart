@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 import 'list_art.dart';
 import 'about.dart';
 import 'list_creation.dart';
+import 'package:lab2/providers/ConfigurationData.dart';
 
 class PixelArtScreen extends StatefulWidget {
   const PixelArtScreen({super.key, required this.title});
@@ -31,12 +33,13 @@ class __PixelArtScreenState extends State<PixelArtScreen> {
   
   Logger logger = Logger();
   int _sizeGrid = 12;
+  
 
   @override
   void initState(){
     super.initState();
     logger.d("PixelArtScreen initialized. Mounted $mounted");
-    //_sizeGrid = context.read<ConfigurationData>().size;
+    _sizeGrid = context.read<ConfigurationData>().size;
     logger.d("Grid size set to: $_sizeGrid");
   }
 
