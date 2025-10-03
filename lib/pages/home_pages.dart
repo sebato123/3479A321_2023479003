@@ -6,7 +6,7 @@ import 'list_art.dart';
 import 'about.dart';
 import 'list_creation.dart';
 import 'home_pages.dart';
-
+import 'config_screen.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -113,9 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     ElevatedButton.icon(
                       onPressed: () {
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => ListArt()),
-                          );
+                        context,
+                        MaterialPageRoute(builder: (_) => const ConfigScreen()),
+                        );
                         },
                       icon: const Icon(Icons.create),
                       label: const Text("Crear"),
