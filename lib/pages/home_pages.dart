@@ -7,6 +7,8 @@ import 'about.dart';
 import 'list_creation.dart';
 import 'home_pages.dart';
 import 'config_screen.dart';
+import 'package:lab2/providers/ConfigurationData.dart';
+import 'package:provider/provider.dart';
 
 
 class MyHomePage extends StatefulWidget {
@@ -104,7 +106,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-        
+
+                  //Mostrar tamaño actual y colores en paleta
+              const SizedBox(height: 12),
+              Builder(
+                builder: (context) {
+                  final size = context.watch<ConfigurationData>().size;
+                  final colorsCount = context.watch<ConfigurationData>().palette.length;
+                  return Text(
+                    'Tamaño actual: ${size}px · Colores en paleta: $colorsCount',
+                    style: const TextStyle(fontSize: 14),
+                  );
+                },
+              ),
+              const SizedBox(height: 12),
         
         const SizedBox(height: 12),
               Row(
@@ -117,8 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         MaterialPageRoute(builder: (_) => const ConfigScreen()),
                         );
                         },
-                      icon: const Icon(Icons.create),
-                      label: const Text("Crear"),
+                      icon: const Icon(Icons.settings_applications),
+                      label: const Text("Configuracion"),
                     ),
                     ElevatedButton.icon(
                       onPressed: () {
@@ -128,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                           },
                           icon: const Icon(Icons.share),
-                          label: const Text("Pantalla PixelArt"),
+                          label: const Text("Compartir PixelArt"),
                     ),
                   ],
                 ),
