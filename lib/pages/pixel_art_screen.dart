@@ -18,7 +18,8 @@ class PixelArtScreen extends StatefulWidget {
 
 class __PixelArtScreenState extends State<PixelArtScreen> {
   final Logger logger = Logger();
-
+  File? _backgroundImage;
+  double _backgroundOpacity = 0.5;
   int _sizeGrid = 16;
   Color _selectedColor = Colors.black;
   bool _showIndices = true;
