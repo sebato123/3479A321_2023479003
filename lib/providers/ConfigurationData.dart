@@ -15,6 +15,10 @@ class ConfigurationData extends ChangeNotifier {
   bool _isResetEnabled = false;
   bool get isResetEnabled => _isResetEnabled;
 
+  //opacidad de fondo
+  double _backgroundOpacity = 0.5;
+  double get backgroundOpacity => _backgroundOpacity;
+
   final List<int> allowedSizes = const [12, 16, 18, 20, 24, 28, 32];
 
   // Paleta única
@@ -96,4 +100,13 @@ class ConfigurationData extends ChangeNotifier {
     if (rgb == null) return null;
     return Color(0xFF000000 | rgb);
   }
+    // --- Opacidad de fondo ---
+   Future<void> setBackgroundOpacity(double value) async {
+    final v = value.clamp(0.0, 1.0);
+    if (v == _backgroundOpacity) return;
+    _backgroundOpacity = v;
+    notifyListeners();
+    await _prefs.setBackgroundOpacity(v);
+  }
+
 }

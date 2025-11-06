@@ -5,7 +5,9 @@ class SharedPreferencesService {
   
   static const String keyBoardSize = 'board_size';
   static const String keyIsResetEnabled = 'isResetEnabled';
-  static const String keyPalette = 'palette_hex'; // nueva clave para la paleta
+  static const String keyPalette = 'palette_hex'; // paleta
+  static const String keyBgOpacity = 'bg_opacity';
+
 
    // Guardar
   Future<void> savePreferences({
@@ -50,8 +52,6 @@ class SharedPreferencesService {
     };
   }
 
- 
-
   // Conversion colores
   Color _colorFromHex(String hex) {
     var v = hex.trim();
@@ -59,6 +59,17 @@ class SharedPreferencesService {
     if (v.length != 6) v = v.padLeft(6, '0');
     final int rgb = int.parse(v, radix: 16);
     return Color(0xFF000000 | rgb);
+  }
+
+  //Slider de opacidad
+  Future<double> getBackgroundOpacity() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getDouble(keyBgOpacity) ?? 0.5; // default 0.5
+  }
+
+  Future<void> setBackgroundOpacity(double value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble(keyBgOpacity, value.clamp(0.0, 1.0));
   }
 
   String _toHex6(Color c) =>

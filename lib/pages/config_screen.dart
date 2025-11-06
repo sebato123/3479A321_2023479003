@@ -68,6 +68,17 @@ class ConfigScreen extends StatelessWidget {
               ),
             ],
           ),
+          ListTile(
+            title: const Text('Opacidad de fondo'),
+            subtitle: Slider(
+              value: cfg.backgroundOpacity,
+              min: 0.1,
+              max: 1.0,
+              divisions: 10,
+              label: '${(cfg.backgroundOpacity * 100).toInt()}%',
+              onChanged: (v) => context.read<ConfigurationData>().setBackgroundOpacity(v),
+            ),
+          ),
         ],
       ),
     );
